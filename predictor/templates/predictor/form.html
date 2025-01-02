@@ -1,0 +1,5 @@
+<form method="POST" action="{% url 'predictor:predict' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Predict</button>
+</form>

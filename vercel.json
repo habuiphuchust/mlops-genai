@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "requirements.txt",
+            "use": "@vercel/python"
+        },
+        {
+            "src": "expenses/wsgi.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/expenses/wsgi.py"
+        }
+    ]
+}
