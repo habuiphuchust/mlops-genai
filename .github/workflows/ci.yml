@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Chạy CI khi có thay đổi trên nhánh chính
+  pull_request:
+    branches:
+      - main  # Chạy CI khi có pull request đến nhánh chính
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Chạy trên môi trường Ubuntu mới nhất
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Kiểm tra mã nguồn
+
+    - name: Set up Python
+      uses: actions/setup-python@v4  # Cài đặt Python
+      with:
+        python-version: '3.12.7'  # Chọn phiên bản Python
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip  # Cập nhật pip
+        pip install -r requirements.txt  # Cài đặt các dependencies trong file requirements.txt
+
+    # - name: Set up database
+    #   run: |
+    #     sudo apt-get install libpq-dev  # Cài đặt PostgreSQL dependencies nếu dùng PostgreSQL
+    #     sudo -u postgres psql -c 'CREATE DATABASE mydb;'  # Tạo database
+
+    # - name: Run migrations
+    #   run: |
+    #     python manage.py migrate  # Chạy migrations để tạo cấu trúc database
+
+    - name: Run tests
+      run: |
+        python manage.py test
+
+    # - name: Collect static files
+    #   run: |
+    #     python manage.py collectstatic --noinput  # Thu thập các file tĩnh
+
+    # - name: Upload coverage results
+    #   uses: codecov/codecov-action@v3  # Tải lên kết quả kiểm thử nếu bạn sử dụng Codecov
+
