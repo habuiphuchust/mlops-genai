@@ -4,6 +4,8 @@
  2. pip install -r requirements.txt
  3. python manage.py runserver
  4. Vào localhost:8000/predictor/predict
+
+
 ---------------------- DOCKER ---------------------------
 1. docker-compose build
 2. docker-compose up
