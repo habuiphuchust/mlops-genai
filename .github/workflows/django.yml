@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4  # Cài đặt Python
       with:
-        python-version: '3.14.0'  # Chọn phiên bản Python
+        python-version: '3.9'  # Chọn phiên bản Python
 
     - name: Install dependencies
       run: |
