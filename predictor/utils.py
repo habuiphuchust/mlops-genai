@@ -2,13 +2,13 @@ import joblib
 import numpy as np
 
 # Tải mô hình và scaler, encoder đã huấn luyện
-model = joblib.load('predictor/model.pkl')
-poly_features = joblib.load('predictor/poly_features.pkl')
-scaler_age = joblib.load('predictor/scaler_age.pkl')
-scaler_bmi = joblib.load('predictor/scaler_bmi.pkl')
-scaler_children = joblib.load('predictor/scaler_children.pkl')
-label_encoder_sex = joblib.load('predictor/label_encoder_sex.pkl')
-label_encoder_smoker = joblib.load('predictor/label_encoder_smoker.pkl')
+model = joblib.load('model/model.pkl')
+poly_features = joblib.load('model/poly_features.pkl')
+scaler_age = joblib.load('model/scaler_age.pkl')
+scaler_bmi = joblib.load('model/scaler_bmi.pkl')
+scaler_children = joblib.load('model/scaler_children.pkl')
+label_encoder_sex = joblib.load('model/label_encoder_sex.pkl')
+label_encoder_smoker = joblib.load('model/label_encoder_smoker.pkl')
 
 
 def predict_expenses(age, sex, bmi, children, smoker):
