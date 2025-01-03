@@ -7,24 +7,32 @@ on:
     branches: [ "Main" ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: '3.14'
+  test:
+    runs-on: ubuntu-latest  # Chạy trên môi trường Ubuntu mới nhất
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - name: Checkout code
+      uses: actions/checkout@v2  # Kiểm tra mã nguồn
+
+    - name: Set up Python
+      uses: actions/setup-python@v4  # Cài đặt Python
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
+        python-version: '3.14.0'  # Chọn phiên bản Python
+
+    - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Tests
+        python -m pip install --upgrade pip  # Cập nhật pip
+        pip install -r requirements.txt  # Cài đặt các dependencies trong file requirements.txt
+
+    # - name: Set up database
+    #   run: |
+    #     sudo apt-get install libpq-dev  # Cài đặt PostgreSQL dependencies nếu dùng PostgreSQL
+    #     sudo -u postgres psql -c 'CREATE DATABASE mydb;'  # Tạo database
+
+    # - name: Run migrations
+    #   run: |
+    #     python manage.py migrate  # Chạy migrations để tạo cấu trúc database
+
+    - name: Run tests
       run: |
         python manage.py test
